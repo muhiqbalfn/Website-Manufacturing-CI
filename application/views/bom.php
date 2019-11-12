@@ -58,13 +58,14 @@
                                     </div>
                                     <div class="tab-pane" id="tab_2">
                                         <!--------------------------------------------------------------------------------------->
-                                        <!-- List contact -->
+                                        <!-- List bom -->
                                         <?php foreach ($data as $key) {  ?>
                                         <div class="col-lg-4">
                                             <div class="box box-primary" style="box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);">
-                                                <div class="box-body">
-                                                    <h4><?php echo $key->product_name ?></h4>
-                                                    <h6 style="color: #333333;"><i>Quantity : <?php echo $key->qty_bom ?> Unit(s)</i></h6>
+                                                <div class="box-body" style="height: 110px;">
+                                                    <img style="float: left; margin-right: 10px;" src="<?php echo base_url() ?>assets/img/product/<?php echo $key->foto_product ?>" height="80px" width="80px">
+                                                    <h5><?php echo $key->product_name ?></h5>
+                                                    <h6 style="color: #a9a9a9;"><i>Quantity : <?php echo $key->qty_bom ?> Unit(s)</i></h6>
                                                 </div>
                                             </div>
                                         </div>

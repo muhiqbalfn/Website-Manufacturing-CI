@@ -14,10 +14,12 @@
             <!-- Tittle -->
             <aside class="right-side">
                 <section class="content-header">
-                    <h1>
-                        Manufacturing Orders
-                        <small>Page</small>
-                    </h1>
+                    <button class="btn btn-default disabled"> Check availability</button>
+                    <div class="pull-right">
+                        <button class="btn btn-default disabled" style="background-color: #a4bfd8; color: white;">Confirmed</button>
+                        <button class="btn btn-default disabled">In Progress</button>
+                        <button class="btn btn-default disabled">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Done &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    </div>
                 </section>
 
                 <!-- Main content -->

@@ -31,7 +31,7 @@ class ProductController extends CI_Controller {
         //$config['encrypt_name'] = TRUE;
         
         $this->load->library('upload',$config);
-        if($this->upload->do_upload('foto_product')){
+        if($this->upload->do_upload('foto_productku')){
             $data = array('upload_data' => $this->upload->data());
             $dat  = array(
 				'id_product_category' => $this->input->post('id_product_category'),

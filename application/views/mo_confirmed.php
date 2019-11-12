@@ -14,9 +14,7 @@
             <!-- Tittle -->
             <aside class="right-side">
                 <section class="content-header">
-                    <a href="<?php echo base_url('MoController/check_stok/'.$id_mo); ?>">
-                        <button class="btn btn-primary"> Check availability</button>
-                    </a>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#mdlCheckstok"> Check availability</button>
                     <div class="pull-right">
                         <button class="btn btn-default disabled" style="background-color: #a4bfd8; color: white;">Confirmed</button>
                         <button class="btn btn-default disabled">In Progress</button>
@@ -70,7 +68,8 @@
             </aside>
         </div>
 
-        <?php $this->load->view('modal/modalProduct'); ?>
+        <?php $this->load->view('modal/modalCheckstok'); ?>
+        <?php $this->load->view('modal/modalConfirmed'); ?>
         <?php $this->load->view('sub/footer'); ?>
     </body>
 </html>
@@ -145,20 +144,19 @@
         });
         //---------------------------------------------------------------------------------------------
 
-        //GET Update ----------------------------------------------------------------------------------
+       //GET Update ----------------------------------------------------------------------------------
         $('#show_data').on('click','.btn_edit',function(){
             var data1 = $(this).attr('data');
             $.ajax({
                 type : "GET",
-                url  : "<?php echo base_url('ProductCategoryController/get_update_data')?>",
+                url  : "<?php echo base_url('MoController/get_update_data')?>",
                 dataType : "JSON",
                 data : {data1:data1},
                 success: function(data){
                     $.each(data,function(){
-                        $('[name=id_product_category]').val(data.id_product_category);
-                        $('[name=category_name]').val(data.category_name);
-                        $("#btn_simpan").attr("disabled",true).css('background-color','#DCDCDC');
-                        $("#btn_update").attr("disabled",false).css('background-color','#1E90FF');
+                        $('#mdlConfirmed').modal('show');
+                        $('[name=qty_ku]').val(data.qty);
+                        $('[name=deadline_start_ku]').val(data.deadline_start);
                     });
                 }
             });
@@ -169,15 +167,16 @@
         //Update --------------------------------------------------------------------------------------
         $('#btn_update').click(function(e){ 
             e.preventDefault();
-            var data1 = $('[name=id_product_category]').val();
-            var data2 = $('[name=category_name]').val();
+            var data1 = $('[name=id_manufacturing]').val();
+            var data2 = $('[name=qty_ku]').val();
+            var data3 = $('[name=deadline_start_ku]').val();
             $.ajax({
                 type : "POST",
-                url  : "<?php echo base_url('ProductCategoryController/update_data')?>",
+                url  : "<?php echo base_url('MoController/update_data')?>",
                 dataType : "JSON",
-                data : {data1:data1, data2:data2},
+                data : {data1:data1,data2:data2,data3:data3},
                 success: function(data){
-                    $('[name=category_name]').val("");
+                    $('#mdlConfirmed').modal('hide'); 
                     swal({
                         type: 'success', 
                         title: 'Changed !',
@@ -186,8 +185,7 @@
                         showConfirmButton: false
                     });
                     //triger
-                    no=0;
-                    tableajax.ajax.reload();
+                    location.reload();
                 },
                 error:function(){
                     swal({
@@ -202,6 +200,7 @@
             return false;
         });
         //---------------------------------------------------------------------------------------------
+
 
         //Delete --------------------------------------------------------------------------------------
         $('#show_data').on('click','.btn_hapus',function(){

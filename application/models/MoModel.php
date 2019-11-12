@@ -31,6 +31,26 @@
 	        return $this->db->insert($table,$dat);
 	    }
 
+	    public function get_update_data($id){
+			$query=$this->db->query("SELECT*FROM tb_manufacturing WHERE id_manufacturing='$id'");
+			if($query->num_rows()>0){
+				foreach ($query->result() as $value) {
+					$data=array(
+						'id_manufacturing' 	 => $value->id_manufacturing,
+						'qty' 	 => $value->qty,
+						'deadline_start' 	 => $value->deadline_start
+					);
+				}
+			}
+			return $data;
+		}
+
+		public function update_data($table,$data,$id){
+			$this->db->set($data);
+			$this->db->where($id);
+			$this->db->update($table,$data);
+		}
+
 		//CONFIRMED----------------------------------------------------------------------------
 		public function get_data_confirmed($id){
 			$this->db->select('*');

@@ -26,17 +26,35 @@
                 <section class="content">
                     <div class="row">
                         <div class="col-lg-12" style="margin-top: 10px;">
-                            <div class="table-responsive">
-                                <table id="tabelajax" class="table table-bordered table-striped table-hover">
+                            <div class="col-lg-12">
+                                <div class="table-responsive">
+                                    <table id="tabelajax" class="table table-bordered table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Image</th>
+                                                <th>Product</th>
+                                                <th>Quantity</th>
+                                                <th>Deadline Start</th>
+                                                <th>Responsible</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="show_data">  
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <button class="btn btn-sm btn-default"   style="margin-bottom: 10px;">&nbsp; <b>List product component</b>
+                                </button>
+                                <table id="tabelajax-component" class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Product</th>
-                                            <th>Quantity</th>
-                                            <th>BoM</th>
-                                            <th>Deadline Start</th>
-                                            <th>Responsible</th>
-                                            <th>Status</th>
+                                            <td width="30">No.</td>
+                                            <td>Image</td>
+                                            <td>ID Product</td>
+                                            <td width="70">Quantity</td>
                                         </tr>
                                     </thead>
                                     <tbody id="show_data">  
@@ -56,7 +74,7 @@
 <script type="text/javascript">
     $(document).ready(function(){ 
 
-        //GET -----------------------------------------------------------------------------------------
+         //GET -----------------------------------------------------------------------------------------
         var no = 0;
         var tableajax = $('#tabelajax').DataTable({
           responsive: true,
@@ -68,10 +86,14 @@
                         no++;
                         return no;
                     }
+                },{
+                    data: null,
+                    render: function (data, type, row) {
+                        return '<img src="<?php echo base_url() ?>assets/img/product/'+row.foto_product+'" height="40px" width="40px">';
+                    }
                 },
                 { data: 'product_name' },
                 { data: 'qty' },
-                { data: 'id_bom' },
                 { data: 'deadline_start' },
                 { data: 'username' },
                 {
@@ -80,6 +102,31 @@
                     return '<span class="badge bg-green"><h7>'+row.status+'</h7></span>';
                     }
                 }
+            ]
+        });
+        //---------------------------------------------------------------------------------------------
+
+        //GET COMPONENT -------------------------------------------------------------------------------
+        var no = 0;
+        var tableajax = $('#tabelajax-component').DataTable({
+          responsive: true,
+            ajax: '<?php echo base_url("MoController/get_data_confirmed_component/") ?><?php echo $id_mo; ?>',
+            columns: [
+                { 
+                    data: null,
+                    render: function(data,type,row){
+                        no++;
+                        return no;
+                    }
+                },
+                {
+                    data: null,
+                    render: function (data, type, row) {
+                        return '<img src="<?php echo base_url() ?>assets/img/product/'+row.foto_product+'" height="40px" width="40px">';
+                    }
+                },
+                { data: 'product_name' },
+                { data: 'qty_detail' }
             ]
         });
         //---------------------------------------------------------------------------------------------

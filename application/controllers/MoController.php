@@ -36,6 +36,22 @@ class MoController extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function get_update_data(){
+        $id   = $this->input->get('data1');
+        $data = $this->MoModel->get_update_data($id);
+        echo json_encode($data);
+    }
+
+    public function update_data(){
+		$dat = array(
+			'qty'	 => $this->input->post('data2'),
+			'deadline_start'	 => $this->input->post('data3')
+		);
+		$id   = array('id_manufacturing' => $this->input->post('data1'));
+		$data  = $this->MoModel->update_data('tb_manufacturing',$dat,$id);
+		echo json_encode($data);
+	}
+
 	//CONFIRMED-----------------------------------------------------
 	public function get_data_confirmed($id){
 		$data['data'] = $this->MoModel->get_data_confirmed($id);
@@ -49,10 +65,6 @@ class MoController extends CI_Controller {
 
 	public function go_confirmed($id){
 		$data['id_mo'] = $id;
-		$this->load->view('mo_confirmed',$data);
-	}
-
-	public function check_stok($id){
 		$data['manufacturing'] = $this->MoModel->get_data_id($id);
 		$mo_array = $this->MoModel->get_data_id($id);
 		foreach($mo_array as $manufacturing){
@@ -60,8 +72,9 @@ class MoController extends CI_Controller {
 		    $id_product = $manufacturing->id_product;
 		}
 		$data['detail_bom'] = $this->MoModel->get_detail_bom_id($id_bom);
-		$this->load->view('mo_checkstok', $data);
+		$this->load->view('mo_confirmed',$data);
 	}
+
 
 	public function del_data_confirmed(){
 		$id   = array('id_manufacturing' => $this->input->post('data1'));
@@ -100,6 +113,11 @@ class MoController extends CI_Controller {
 
 	public function get_data_produce($id){
 		$data['data'] = $this->MoModel->get_data_produce($id);
+		echo json_encode($data);
+	}
+
+	public function get_data_produce_component($id){
+		$data['data'] = $this->MoModel->get_data_confirmed_component($id);
 		echo json_encode($data);
 	}
 

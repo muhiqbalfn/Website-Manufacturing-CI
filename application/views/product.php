@@ -17,6 +17,7 @@
                     <h1>
                         Products
                         <small>Page</small>
+                        <button id="tombol" type="button" onclick="Swal('Hello world !','Latihan Sweet !!!','success')">Klik saya</button>
                     </h1>
                 </section>
 
@@ -84,7 +85,7 @@
                 </section>
             </aside>
         </div>
-
+        
         <?php $this->load->view('modal/modalProduct'); ?>
         <?php $this->load->view('sub/footer'); ?>
     </body>

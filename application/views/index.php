@@ -17,6 +17,7 @@
                     <h1>
                         Dashboard
                         <small>Page</small>
+                        <button id="tombol" type="button" onclick="Swal('Hello world !','Latihan Sweet !!!','success')">Klik saya</button>
                     </h1>
                 </section>
 

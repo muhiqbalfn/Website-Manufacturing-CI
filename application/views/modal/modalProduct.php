@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <div class="col-xs-12">
-                            <input type="file" name="foto_product">
+                            <input type="file" name="foto_productku">
                             <input type="hidden" name="foto_product">
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             <input type="text" name="barcode" class="form-control" placeholder="Barcode">
                         </div>
                         <div class="col-xs-6">
-                            <input type="text" name="stok" class="form-control" placeholder="Stok">
+                            <input type="number" name="stok" class="form-control" placeholder="Stok">
                         </div>
                     </div>
                     <div class="form-group">
@@ -72,7 +72,7 @@
                 <div class="modal-footer">
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                     <button class="btn btn-primary" id="btn_simpan" type="submit">Simpan</button>
-                    <button class="btn btn-primary" id="btn_update" style="background-color: #DCDCDC" disabled="true">Update</button>
+                    <button class="btn btn-primary" id="btn_update" style="background-color: #DCDCDC"   >Update</button>
                 </div>
             </form>
         </div>

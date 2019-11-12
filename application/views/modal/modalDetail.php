@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-xs-6">
                             <label>Quantity</label>
-                            <input type="text" name="qty_detail" class="form-control" value="1.00">
+                            <input type="number" name="qty_detail" class="form-control" value="1.00">
                         </div>
                     </div>
                 </div>
